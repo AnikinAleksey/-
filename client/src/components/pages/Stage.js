@@ -1,8 +1,8 @@
 import { Form, Button, Input, Table, Modal } from 'antd'
-import { ApiService } from '../../services/api.servicebst'
+import { StageApiService } from '../../services/api.servicestage'
 import { useEffect, useState } from 'react'
 
-const apiService = new ApiService()
+const apiService = new StageApiService()
 
 const columns = [
 	{
@@ -11,18 +11,13 @@ const columns = [
 		key: 'id'
 	},
 	{
-		title: 'Название статуса заявки на бронирование',
-		dataIndex: 'name',
-		key: 'name'
+		title: 'Название этажа',
+		dataIndex: 'number',
+		key: 'number'
 	},
-	{
-		title: 'Описание',
-		dataIndex: 'comment',
-		key: 'comment'
-	}
 ]
 
-function CrudBookingStatus(props) {
+function CrudStage(props) {
 
 
 	const [items, setItems] = useState([])
@@ -68,14 +63,11 @@ function CrudBookingStatus(props) {
 	}, [])
 	return (
 		<>
-			 
-				<Button className='ButtonAdd' type='primary' onClick={() => showItem()}>
+				<Button   className='ButtonAdd' type='primary' onClick={() => showItem()}>
 					Добавить
 				</Button>
-			
 				<></>
-			
-			<Table className='TableItems'
+			<Table className='TableItems' 
 				pagination={{ position: ['topRight'] }}
 				dataSource={items}
 				columns={columns}
@@ -86,8 +78,8 @@ function CrudBookingStatus(props) {
 					}
 				}}
 			></Table>
-			<Modal
-				title={itemRecord.id ? 'Изменение статуса с id=' + itemRecord.id : 'Добавление статуса'}
+			<Modal 
+				title={itemRecord.id ? 'Изменение этажа с id=' + itemRecord.id : 'Добавление нового этажа'}
 				open={modalVisible}
 				okText='Сохранить'
 				cancelText='Отмена'
@@ -95,43 +87,33 @@ function CrudBookingStatus(props) {
 				centered
 				footer={[
 					 
-						<Button className='ButtonSave' type='primary' onClick={() => saveItem()} disabled={!itemRecord.name || !itemRecord.comment}>
+						<Button className='ButtonSave'type='primary'  onClick={() => saveItem()} disabled={!itemRecord.number}>
 							Сохранить
 						</Button>,
 					
 					 
-						<Button danger onClick={() => removeItem(itemRecord.id)} disabled={!itemRecord.id}>
+						<Button  danger onClick={() => removeItem(itemRecord.id)}disabled={!itemRecord.id}>
 							Удалить
 						</Button>,
 					  
 					<Button onClick={() => close()}>Отмена</Button>
 				]}
 			>
-				<Form labelAlign='left' labelCol={{ span: 8 }} wrapperCol={{ span: 18 }}>
-					<Form.Item label='Название статуса'>
-						<Input
+				<Form labelAlign='left' labelCol={{ span: 5 }} wrapperCol={{ span: 18 }}>
+					<Form.Item label='Номер этажа'>
+						<Input  
 							onChange={v =>
 								setItemRecord(prevState => {
-									return { ...prevState, name: v.target.value }
+									return { ...prevState, number: v.target.value }
 								})
 							}
-							value={itemRecord.name}
+							value={itemRecord.number}
 						/>
-					</Form.Item>
-					<Form.Item label='Описание статуса'>
-						<Input
-							onChange={v =>
-								setItemRecord(prevState => {
-									return { ...prevState, comment: v.target.value }
-								})
-							}
-							value={itemRecord.comment}
-						/>
-					</Form.Item>
+					</Form.Item >
 				</Form>
 			</Modal>
 		</>
 	)
 }
 
-export default CrudBookingStatus
+export default CrudStage

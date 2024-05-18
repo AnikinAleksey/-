@@ -25,10 +25,8 @@ class ItemController {
 		const item = await db.query(`SELECT * FROM bookingstatus WHERE id = ${id}`)
 		res.json(item.rows[0])
 	}
+
 	async deleteItem(req, res) {
-	
-		
-		
 			const id = req.params.id
 			const item = await db.query(`DELETE FROM bookingstatus WHERE id = ${id}`)
 			res.json({ success: true })

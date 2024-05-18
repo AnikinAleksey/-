@@ -1,5 +1,5 @@
-export class StatusRoomApiService {
-	#apiPath = 'http://localhost:3001/apirst'
+export class StageApiService {
+	#apiPath = 'http://localhost:3001/apistage'
 
 	#makeRequest(url, options) {
 		return fetch(this.#apiPath + url, {

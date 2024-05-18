@@ -1,8 +1,8 @@
 import { Form, Button, Input, Table, Modal } from 'antd'
-import { ApiService } from '../../services/api.servicert'
+import { TypeApiService } from '../../services/api.servicert'
 import { useEffect, useState } from 'react'
 
-const apiService = new ApiService()
+const apiService = new TypeApiService()
 
 const columns = [
 	{
@@ -68,14 +68,11 @@ function CrudBookingStatus(props) {
 	}, [])
 	return (
 		<>
-			 
-				<Button type='primary' onClick={() => showItem()}>
+				<Button className='ButtonAdd' type='primary' onClick={() => showItem()}>
 					Добавить
 				</Button>
-			
 				<></>
-			
-			<Table
+			<Table className='TableItems'
 				pagination={{ position: ['topRight'] }}
 				dataSource={items}
 				columns={columns}
@@ -87,7 +84,7 @@ function CrudBookingStatus(props) {
 				}}
 			></Table>
 			<Modal
-				title={itemRecord.id ? 'Изменение сущности с id=' + itemRecord.id : 'Добавление новой сущности'}
+				title={itemRecord.id ? 'Изменениетипа номера с id=' + itemRecord.id : 'Добавление новго типа номера'}
 				open={modalVisible}
 				okText='Сохранить'
 				cancelText='Отмена'
@@ -95,19 +92,19 @@ function CrudBookingStatus(props) {
 				centered
 				footer={[
 					 
-						<Button type='primary' onClick={() => saveItem()} disabled={!itemRecord.name || !itemRecord.residents}>
+						<Button className='ButtonSave' type='primary' onClick={() => saveItem()} disabled={!itemRecord.name || !itemRecord.residents}>
 							Сохранить
 						</Button>,
 					
 					 
-						<Button danger onClick={() => removeItem(itemRecord.id)}>
+						<Button danger onClick={() => removeItem(itemRecord.id)}disabled={!itemRecord.id}>
 							Удалить
 						</Button>,
 					  
 					<Button onClick={() => close()}>Отмена</Button>
 				]}
 			>
-				<Form labelAlign='left' labelCol={{ span: 4 }} wrapperCol={{ span: 18 }}>
+				<Form labelAlign='left' labelCol={{ span: 8 }} wrapperCol={{ span: 18 }}>
 					<Form.Item label='Название типа номера'>
 						<Input
 							onChange={v =>

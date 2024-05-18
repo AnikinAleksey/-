@@ -2,7 +2,6 @@ function Main() {
 	return (
 		<>
 			<div className='main-page'>
-				
 			</div>
 		</>
 	)

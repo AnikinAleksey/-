@@ -1,4 +1,4 @@
-export class ApiService {
+export class TypeApiService {
 	#apiPath = 'http://localhost:3001/apirt'
 
 	#makeRequest(url, options) {

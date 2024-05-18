@@ -17,6 +17,15 @@ function Header() {
 				<Link className='header-link' to={'/RoomType'}>
 						Типы номеров
 				</Link>
+				<Link className='header-link' to={'/Quest'}>
+						Гости
+				</Link>
+				<Link className='header-link' to={'/Stage'}>
+						Этажи
+				</Link>
+				<Link className='header-link' to={'/Room'}>
+						Номера
+				</Link>
 			</div>
 		</>
 	)
